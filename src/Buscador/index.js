@@ -5,8 +5,12 @@ import { BuscadorAvanzado } from "./BuscadoAvanzado";
 function Buscador () {
     return (
         <nav>
-            <BuscadorSimple/>
-            <BuscadorAvanzado/>
+            <BuscadorAvanzado/> 
+            {
+                /* 
+                <BuscadorSimple/>
+                */
+            }
         </nav>
     );
 }

@@ -1,0 +1,8 @@
+.main_report {
+    border: var(--color-borde) 1.5px solid;
+    border-radius: 2px;
+    box-shadow: var(--color-borde) 0 0 5px 1px;
+    background: radial-gradient(var(--color-fondo-oscuro),var(--color-fondo-claro));
+    margin-top: 20px;
+    height: 47vh;
+}

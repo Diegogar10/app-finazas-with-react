@@ -9,7 +9,7 @@ import './App.css';
 function App() {
   return (
     <React.Fragment>
-      <h1>Registro de Ingreso - Egreso</h1>
+      <h1 className='title'>Registro de Ingreso - Egreso</h1>
       <Buscador/>
       <Datos />
       <List>
