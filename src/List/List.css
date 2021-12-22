@@ -5,4 +5,5 @@
     background: radial-gradient(var(--color-fondo-oscuro),var(--color-fondo-claro));
     margin-top: 20px;
     height: 47vh;
+    overflow: scroll;
 }

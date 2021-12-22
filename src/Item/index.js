@@ -1,16 +1,23 @@
 import React from "react";
+import './Item_entry_incomplete.css';
+import './Item_egress_incomplete.css';
+import './Item_entry_complete.css'
+import './Item_egress_complete.css'
 
-function Item () {
+
+function Item ({clase}) {
     return (
-        <li>
-            <section>
-                <button></button>
-                <p>PAgo de Nomina mes Enero</p>
-                <p>$ 1'500.000</p>
-                <span>12/2/2021</span>
+        <li className={clase}>
+            <section className="item__data">
+                <button className="button">✔</button>
+                <p className="text">Pago de Nomina mes, consignacion banco</p>
+                <p className="price">$1'500.000</p>
+                <span className="date">12/2/2021</span>
             </section>
-            <section>
-                <button></button>
+            <section className="item__close">
+                <button>
+                    
+                </button>
             </section>
         </li>
     );

@@ -13,8 +13,14 @@ function App() {
       <Buscador/>
       <Datos />
       <List>
-        <Item/>
-        <Item/>
+        <Item clase="item__container--entryIncomplete"/>
+        <Item clase="item__container--egressIncomplete"/>
+        <Item clase="item__container--entryComplete"/>
+        <Item clase="item__container--egressComplete"/>
+        <Item clase="item__container--egressComplete"/>
+        <Item clase="item__container--egressComplete"/>
+        <Item clase="item__container--egressComplete"/>
+        <Item clase="item__container--egressComplete"/>
       </List>
       <BotonAgregar/>
     </React.Fragment>
