@@ -122,6 +122,9 @@ input[type="checkbox"]:checked + label::after {
     opacity: 1;
 }
 
+.invisible{
+    opacity: 0;
+}
 
 .search__date label,
 .search__state label {

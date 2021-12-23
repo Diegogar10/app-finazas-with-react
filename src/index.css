@@ -25,17 +25,23 @@
 
 body {
   margin: 10px auto;
-  padding: 25px;
+  padding: 20px;
   color: white;
   background: linear-gradient(to left,var(--color-fondo-oscuro),var(--color-fondo-claro));
   border: var(--color-borde) 2px solid;
   border-radius: 20px;
   box-shadow: var(--color-borde) 0px 0px 20px 5px;
   width: 360px;
-  height: 97vh;
+  height: 100%;
   font-family: var(--mi-letra);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  position: relative;
+  display: grid;
+  height: 90vh;
 }
 
 code {
