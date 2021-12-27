@@ -34,38 +34,124 @@ const transacciones = [
   
 ]
 
-const buscaTransacciones = (cadenaTexto,transacciones)=>{
-  if(!cadenaTexto.length >= 1){
-    return transacciones;
+const buscaFechasTransacciones = (fecha1,fecha2,transaccionesArray) =>{
+  
+  const fechaInicio = Date.parse(fecha1);
+  const fechaFinal = Date.parse(fecha2);
+  let newArrayFechas = [];
+  
+  if((!fecha1.length >= 1) || (!fecha2.length >=1)){
+    console.log('entre');
+    return transaccionesArray;
+  } else {
+    transaccionesArray.filter((e)=>{
+      const fechaTransaccion = Date.parse(e.fecha);
+      if((fechaTransaccion >= fechaInicio) && (fechaTransaccion <= fechaFinal)) {
+        newArrayFechas.push(e);
+      }
+    });
+    return newArrayFechas;
+  }
+};
+
+const buscaPalabraTransacciones = (cadenaTexto,transaccionesArray,funcion)=>{
+  if((!cadenaTexto.length >= 1) || (!cadenaTexto==='')){
+    return transaccionesArray;
   }else {
-    transacciones = transacciones.filter((e)=>{
+
+      transaccionesArray = transaccionesArray.filter((e)=>{
       const textoBusqueda = cadenaTexto.toLowerCase();
-      const textoTransacciones = e.concepto.toLowerCase();
+      let textoTransacciones = '';
+      if(funcion === 'palabra'){
+        textoTransacciones = e.concepto.toLowerCase();
+      }else if (funcion === 'fecha'){
+        textoTransacciones = e.fecha.toLowerCase();
+      }
       return textoTransacciones.includes(textoBusqueda);
     })
   }
-  return transacciones;
+  return transaccionesArray;
 }
 
+const buscaEstadoTransacciones = (estado, transaccionesArray) =>{
+  
+  let newArray = [];
+  
+  if(estado){
+    if (estado === 'uno') {
+      newArray = transaccionesArray;
+    }
+    if (estado === 'dos') {
+      newArray = transaccionesArray.filter((e)=>{
+        if(e.estado === true) {
+          return e;
+        }
+      })
+    }
+    if(estado === 'tres') {
+      newArray = transaccionesArray.filter((e)=>{
+        if(e.estado === false){
+          return e;
+        }
+      })
+    }
+  }
+  return newArray;
+}
 
 function TransProvider(props) {
 
   const [tipoBuscador, setTipoBuscador] = React.useState(false);
   const [tipoFecha, setTipoFecha] = React.useState(false);
+  const [fechaGuardada1, setFechaGuardada1] = React.useState('');
+  const [fechaGuardada2, setFechaGuardada2] = React.useState('');
   const [cadenaCaracteres,setCadena] = React.useState('');
+  const [fecha1,setFecha1] = React.useState('');
+  const [fecha2,setFecha2] = React.useState('');
+  const [estado,setEstado] = React.useState('uno');
+
+  const palabraTransacciones = buscaPalabraTransacciones(cadenaCaracteres, transacciones, 'palabra');
   
-  const newTransacciones = buscaTransacciones(cadenaCaracteres, transacciones);
-   
+  let fechaTransacciones = [];
+  let estadoTransacciones = [];
+
+  if (tipoBuscador){
+    
+    if(!tipoFecha) {
+      fechaTransacciones = buscaPalabraTransacciones(fecha1,palabraTransacciones, 'fecha');
+    }
+    if(!!tipoFecha) {
+      fechaTransacciones = buscaFechasTransacciones(fecha1,fecha2,palabraTransacciones); 
+    }
+    estadoTransacciones = buscaEstadoTransacciones(estado,fechaTransacciones);
+  
+  } else {
+
+    estadoTransacciones = palabraTransacciones;
+  }
+
+  
+
+  const resultTransacciones = estadoTransacciones;
+
   return (
     <TransContext.Provider value={
         {
-          newTransacciones,
+          resultTransacciones,
           tipoBuscador,
           setTipoBuscador,
           tipoFecha,
           setTipoFecha,
           cadenaCaracteres,
-          setCadena
+          setCadena,
+          setFecha1,
+          setFecha2,
+          estado,
+          setEstado,
+          fechaGuardada1,
+          setFechaGuardada1,
+          fechaGuardada2,
+          setFechaGuardada2,
         }
     }>
         {props.children}

@@ -9,7 +9,7 @@ import {TransContext} from '../TransContext'
 function AppUI() {
 
 
-    const {newTransacciones} = React.useContext(TransContext);
+    const {resultTransacciones} = React.useContext(TransContext);
 
      return (
         <React.Fragment>
@@ -18,7 +18,7 @@ function AppUI() {
           <Datos />
           <List>
             {
-              newTransacciones.map(dato=>(
+              resultTransacciones.map(dato=>(
                 <Item
                 key = {dato.concepto} 
                 fecha = {dato.fecha}

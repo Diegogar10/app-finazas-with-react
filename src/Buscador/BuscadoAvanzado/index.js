@@ -4,9 +4,20 @@ import './BuscadorAvanzado.css'
 
 function BuscadorAvanzado ({children}) {
 
-    const {tipoFecha,setTipoFecha} = React.useContext(TransContext);
-    const {cadenaCaracteres, setCadena} = React.useContext(TransContext)
-
+    const 
+        {   tipoFecha,
+            setTipoFecha,
+            cadenaCaracteres, 
+            setCadena,
+            setFecha1,
+            setFecha2,
+            setEstado,
+            fechaGuardada1, 
+            setFechaGuardada1, 
+            fechaGuardada2, 
+            setFechaGuardada2, 
+        } = React.useContext(TransContext);
+    
 
     return(
         <form class="form__container--avanzado">
@@ -32,12 +43,14 @@ function BuscadorAvanzado ({children}) {
                 <input
                     className="date__value--start" 
                     type='date'
+                    value={fechaGuardada1}
                     onChange={(e)=>
                         {
                             var re = /-/gi;
                             var str = e.target.value;
                             var newstr = str.replace(re, "/");
-                            console.log(newstr);    
+                            setFecha1(newstr);
+                            setFechaGuardada1(str);    
                         }
                     }>
                 </input>
@@ -47,6 +60,16 @@ function BuscadorAvanzado ({children}) {
                 <input 
                     className={`date__value--end ${ !tipoFecha && 'invisible'}`}
                     type='date'
+                    value={fechaGuardada2}
+                    onChange={(e)=>
+                        {
+                            var re = /-/gi;
+                            var str = e.target.value;
+                            var newstr = str.replace(re, "/");
+                            setFecha2(newstr);
+                            setFechaGuardada2(str);    
+                        }
+                    }
                     >
                 </input>
                 <div className="check__container">
@@ -66,9 +89,15 @@ function BuscadorAvanzado ({children}) {
             </section>
             <section className="search__state">
                 <label>Estado</label>
-                <select className="state__options">
-                    <option>Completa</option>
-                    <option>Incompleta</option>
+                <select 
+                    className="state__options"
+                    onChange={(e)=>{
+                        setEstado(e.target.value);
+                    }}
+                >
+                    <option value = 'uno' >Todas</option>
+                    <option value = 'dos' >Completa</option>
+                    <option value = 'tres' >Incompleta</option>
                 </select>
             </section>
 
