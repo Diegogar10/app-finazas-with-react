@@ -4,12 +4,14 @@ import { Datos } from '../Datos';
 import { Item } from '../Item';
 import { List } from '../List';
 import { BotonAgregar } from '../BotonAgregar';
-import {TransContext} from '../TransContext'
+import {TransContext} from '../TransContext';
+import { Modal } from '../Modal';
+import { TodoForm } from '../TodoForm';
 
 function AppUI() {
 
 
-    const {resultTransacciones} = React.useContext(TransContext);
+    const {resultTransacciones, completeTransaccion, deleteTransaccion, openModal} = React.useContext(TransContext);
 
      return (
         <React.Fragment>
@@ -26,10 +28,17 @@ function AppUI() {
                 tipo = {dato.tipo}
                 estado = {dato.estado}
                 valor = {dato.valor}
+                onComplete = {()=>completeTransaccion(dato.concepto)}
+                onDelete = {()=>deleteTransaccion(dato.concepto)}
                 />
                 ))
               }
           </List>  
+          {openModal && (
+            <Modal>
+                <TodoForm></TodoForm>
+            </Modal>
+          )}
           <BotonAgregar/>
         </React.Fragment>   
     );

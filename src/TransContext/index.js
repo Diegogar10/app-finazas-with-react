@@ -8,28 +8,28 @@ const transacciones = [
     concepto:'Consignacion Banco1',
     tipo:false,
     estado:false,
-    valor:1500000
+    valor:800000
   },
   {
     fecha:'2021/05/21',
     concepto:'Consignacion Banco2',
     tipo:true,
     estado:false,
-    valor:1500000
+    valor:650000
   },
   {
     fecha:'2021/02/02',
     concepto:'Consignacion Banco3',
     tipo:false,
     estado:true,
-    valor:1500000
+    valor:1200000
   },
   {
     fecha:'2021/05/15',
     concepto:'Consignacion Banco4',
     tipo:true,
     estado:true,
-    valor:1500000
+    valor:1000000
   },
   
 ]
@@ -101,16 +101,25 @@ const buscaEstadoTransacciones = (estado, transaccionesArray) =>{
 
 function TransProvider(props) {
 
+  //const [arrayTransacciones, setArrayTransaccion] = React.useState(transacciones);
   const [tipoBuscador, setTipoBuscador] = React.useState(false);
   const [tipoFecha, setTipoFecha] = React.useState(false);
   const [fechaGuardada1, setFechaGuardada1] = React.useState('');
   const [fechaGuardada2, setFechaGuardada2] = React.useState('');
   const [cadenaCaracteres,setCadena] = React.useState('');
   const [fecha1,setFecha1] = React.useState('');
-  const [fecha2,setFecha2] = React.useState('');
+  const [fecha2,setFecha2] = React.useState('');  
   const [estado,setEstado] = React.useState('uno');
+  const [openModal,setOpenModal] = React.useState(false);
 
-  const palabraTransacciones = buscaPalabraTransacciones(cadenaCaracteres, transacciones, 'palabra');
+  const {
+    item:arrayTransacciones,
+    saveItem: setArrayTransaccion,
+    loading,
+    error,
+  } = useLocalStorage('Transacciones_V1.0', transacciones);
+
+  const palabraTransacciones = buscaPalabraTransacciones(cadenaCaracteres, arrayTransacciones, 'palabra');
   
   let fechaTransacciones = [];
   let estadoTransacciones = [];
@@ -130,10 +139,45 @@ function TransProvider(props) {
     estadoTransacciones = palabraTransacciones;
   }
 
+  const addTransaccion = (fecha,concepto,tipo,valor) => {
+    const newTodos = [...arrayTransacciones];
+    newTodos.push({
+      fecha,
+      concepto,
+      tipo,
+      estado:false,
+      valor
+    });
+    console.log(newTodos);
+    setArrayTransaccion(newTodos);
+  }
+
+  const completeTransaccion = (concepto) => {
+    const findIndex = arrayTransacciones.findIndex((item)=>{
+      return item.concepto === concepto;
+    });
+    
+    const newTransacciones = [...arrayTransacciones];
+    
+    if(newTransacciones[findIndex].estado){ 
+      newTransacciones[findIndex].estado = false
+    }else {
+      newTransacciones[findIndex].estado = true;
+    }
+    setArrayTransaccion(newTransacciones);
+  }
   
-
+  const deleteTransaccion = (concepto) => {
+    const findIndex = arrayTransacciones.findIndex((item)=>{
+      return item.concepto === concepto;
+    });
+    const newTransacciones = [...arrayTransacciones];
+    newTransacciones.splice(findIndex,1);  
+    setArrayTransaccion(newTransacciones);
+  }
+ 
   const resultTransacciones = estadoTransacciones;
-
+  
   return (
     <TransContext.Provider value={
         {
@@ -152,6 +196,12 @@ function TransProvider(props) {
           setFechaGuardada1,
           fechaGuardada2,
           setFechaGuardada2,
+          completeTransaccion,
+          deleteTransaccion,
+          openModal,
+          setOpenModal,
+          addTransaccion
+
         }
     }>
         {props.children}

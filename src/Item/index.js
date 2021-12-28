@@ -25,19 +25,30 @@ function Item (
         concepto,
         tipo,
         estado,
-        valor
+        valor,
+        onComplete,
+        onDelete
     }
 ) {
+
+
+    const formatoValor = new Intl.NumberFormat('es-Latn-CO').format(valor);
+
     return (
         <li className={tipoClase(tipo,estado)}>
             <section className="item__data">
-                <button className="button">✔</button>
+                <button 
+                    className={`button ${!!estado && 'actived'}`}
+                    onClick={onComplete}
+                >✔</button>
                 <p className="text">{concepto}</p>
-                <p className="price">${valor}</p>
+                <p className="price">${formatoValor}</p>
                 <span className="date">{fecha}</span>
             </section>
             <section className="item__close">
-                <button>
+                <button
+                    onClick={onDelete}
+                >
                     
                 </button>
             </section>

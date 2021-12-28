@@ -50,13 +50,10 @@
     color:var(--color-secundario);
     background-color: var(--color-primario);
 }
-.item__data .button--actived {
-    color:var(--color-primario);
-    background-color: var(--color-secundario);
-}
+
 .item__container--entryComplete .item__data .button:hover {
-    color:var(--color-primario);
-    background-color: var(--color-secundario);
+    background-color:var(--color-primario);
+    color: var(--color-secundario);
 }
 
 
@@ -89,3 +86,8 @@
 .item__container--entryComplete:hover > .item__close {
     opacity: 1;
 } 
+
+.item__container--entryComplete .item__data .actived {
+    color:var(--color-primario);
+    background-color: var(--color-secundario);
+}

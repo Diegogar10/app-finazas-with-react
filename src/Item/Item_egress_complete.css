@@ -57,13 +57,10 @@
     grid-row: 1/2;
     
 }
-.item__data .button--actived {
-    color:var(--color-primario);
-    background-color: var(--color-secundario);
-}
+
 .item__container--egressComplete .item__data .button:hover {
-    color:var(--color-primario);
-    background-color: var(--color-estadistica2);
+    background-color:var(--color-primario);
+    color: var(--color-estadistica2);
 }
 
 
@@ -96,3 +93,7 @@
 .item__container--egressComplete:hover > .item__close {
     opacity: 1;
 } 
+.item__container--egressComplete .item__data .actived {
+    color:var(--color-primario);
+    background-color: var(--color-estadistica2);
+}
