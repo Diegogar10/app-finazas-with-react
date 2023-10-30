@@ -1,14 +1,15 @@
 {
   "files": {
-    "main.css": "/app-finazas-with-react/static/css/main.cc623d13.css",
-    "main.js": "/app-finazas-with-react/static/js/main.b774f9fb.js",
+    "main.css": "/app-finazas-with-react/static/css/main.5d541183.css",
+    "main.js": "/app-finazas-with-react/static/js/main.25408c1a.js",
+    "static/media/icon_edit.svg": "/app-finazas-with-react/static/media/icon_edit.7f1cdd73fc3a5d7bc2c6.svg",
     "index.html": "/app-finazas-with-react/index.html",
     "static/media/icon_delete.svg": "/app-finazas-with-react/static/media/icon_delete.db0e00da9575d018b550.svg",
-    "main.cc623d13.css.map": "/app-finazas-with-react/static/css/main.cc623d13.css.map",
-    "main.b774f9fb.js.map": "/app-finazas-with-react/static/js/main.b774f9fb.js.map"
+    "main.5d541183.css.map": "/app-finazas-with-react/static/css/main.5d541183.css.map",
+    "main.25408c1a.js.map": "/app-finazas-with-react/static/js/main.25408c1a.js.map"
   },
   "entrypoints": [
-    "static/css/main.cc623d13.css",
-    "static/js/main.b774f9fb.js"
+    "static/css/main.5d541183.css",
+    "static/js/main.25408c1a.js"
   ]
 }
