@@ -111,6 +111,8 @@ function TransProvider(props) {
   const [fecha2,setFecha2] = React.useState('');  
   const [estado,setEstado] = React.useState('uno');
   const [openModal,setOpenModal] = React.useState(false);
+  const [openModal2,setOpenModal2] = React.useState(false);
+  const [infoModal,setinfoModal] = React.useState({});
 
   const {
     item:arrayTransacciones,
@@ -141,14 +143,24 @@ function TransProvider(props) {
 
   const addTransaccion = (fecha,concepto,tipo,valor) => {
     const newTodos = [...arrayTransacciones];
-    newTodos.push({
+    newTodos.unshift({
       fecha,
       concepto,
       tipo,
       estado:false,
       valor
     });
-    console.log(newTodos);
+    setArrayTransaccion(newTodos);
+  }
+
+  const modifyTransaccion = (fecha,concepto,tipo,valor,index) => {
+    const newTodos = arrayTransacciones.toSpliced(index, 1, {
+      fecha,
+      concepto,
+      tipo,
+      estado:false,
+      valor
+    });
     setArrayTransaccion(newTodos);
   }
 
@@ -176,6 +188,17 @@ function TransProvider(props) {
     setArrayTransaccion(newTransacciones);
   }
  
+  const editTransaccion = (concepto) => {
+    const findInfo = arrayTransacciones.find((item)=>{
+      return item.concepto === concepto;
+    });
+    const index = arrayTransacciones.findIndex((item)=>{
+      return item.concepto === concepto;
+    });
+    setinfoModal({...findInfo, index});
+    setOpenModal2(true);
+  }
+
   const resultTransacciones = estadoTransacciones;
   
   return (
@@ -199,9 +222,13 @@ function TransProvider(props) {
           completeTransaccion,
           deleteTransaccion,
           openModal,
+          openModal2,
           setOpenModal,
-          addTransaccion
-
+          setOpenModal2,
+          addTransaccion,
+          editTransaccion,
+          infoModal,
+          modifyTransaccion
         }
     }>
         {props.children}

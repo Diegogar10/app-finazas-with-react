@@ -3,8 +3,8 @@
     border-radius: 2px;
     box-shadow: var(--color-borde) 0 0 5px 1px;
     background: radial-gradient(var(--color-fondo-oscuro),var(--color-fondo-claro));
-    margin-top: 20px;
-    height: 40vh;
+    margin-top: 10px;
+    height: 60vh;
     overflow: scroll;
     overflow-x: hidden;
 }

@@ -40,8 +40,9 @@ body {
 
 #root {
   position: relative;
-  display: grid;
-  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  height: 95vh;
 }
 
 code {

@@ -27,7 +27,8 @@ function Item (
         estado,
         valor,
         onComplete,
-        onDelete
+        onDelete,
+        onEdit
     }
 ) {
 
@@ -50,6 +51,12 @@ function Item (
                     onClick={onDelete}
                 >
                     
+                </button>
+            </section>
+            <section className="item__edit">
+                <button 
+                    onClick={onEdit}
+                >
                 </button>
             </section>
         </li>

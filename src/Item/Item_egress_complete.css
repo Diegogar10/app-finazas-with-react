@@ -92,7 +92,29 @@
 
 .item__container--egressComplete:hover > .item__close {
     opacity: 1;
-} 
+}
+
+.item__container--egressComplete .item__edit {
+    width: 10%;
+    display: grid;
+    place-items: center;
+    opacity: 0;
+}
+.item__container--egressComplete .item__edit button{
+    background-color: transparent;
+    border: none;
+    background-image: url(./icon_edit.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+}
+
+.item__container--egressComplete:hover > .item__edit {
+    opacity: 1;
+}
+
 .item__container--egressComplete .item__data .actived {
     color:var(--color-primario);
     background-color: var(--color-estadistica2);

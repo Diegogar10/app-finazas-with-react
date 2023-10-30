@@ -5,7 +5,7 @@
     justify-content: space-around;
     border: var(--color-secundario) solid 3.4px;
     border-radius: 20px;
-    padding: 10px 0;
+    padding: 8px 0;
 }
 
 .data__title {
@@ -21,6 +21,9 @@
     background-color: var(--color-fondo-oscuro);
 }
 
+.data__conatiner p {
+    font-size: 12px;
+}
 .data__total--complete,
 .data__total--incomplete {
     display: flex;

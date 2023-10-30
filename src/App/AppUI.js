@@ -7,12 +7,13 @@ import { BotonAgregar } from '../BotonAgregar';
 import {TransContext} from '../TransContext';
 import { Modal } from '../Modal';
 import { TodoForm } from '../TodoForm';
+import { TodoFormEdit } from '../TodoFormEdit';
 
 function AppUI() {
 
 
-    const {resultTransacciones, completeTransaccion, deleteTransaccion, openModal} = React.useContext(TransContext);
-
+    const {resultTransacciones, completeTransaccion, deleteTransaccion, editTransaccion, openModal, openModal2, infoModal} = React.useContext(TransContext);
+    
      return (
         <React.Fragment>
           <h1 className='title'>Registro de Ingreso - Egreso</h1>
@@ -30,6 +31,7 @@ function AppUI() {
                 valor = {dato.valor}
                 onComplete = {()=>completeTransaccion(dato.concepto)}
                 onDelete = {()=>deleteTransaccion(dato.concepto)}
+                onEdit = {()=>editTransaccion(dato.concepto)}
                 />
                 ))
               }
@@ -37,6 +39,14 @@ function AppUI() {
           {openModal && (
             <Modal>
                 <TodoForm></TodoForm>
+            </Modal>
+          )}
+            
+          {openModal2 && (
+            <Modal>
+                <TodoFormEdit
+                  {...infoModal}
+                ></TodoFormEdit>
             </Modal>
           )}
           <BotonAgregar/>
